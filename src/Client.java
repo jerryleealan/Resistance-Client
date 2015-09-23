@@ -1,7 +1,9 @@
 import java.net.*;
 import java.io.*;
 import java.util.*;
+
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.*;
 public class Client {
@@ -13,13 +15,18 @@ public class Client {
 		gui();
 		network();
 	}
+	
+	private String hostnamestring="84F9622";
+	
 	private ArrayList<String>otherspys=new ArrayList<String>();
 	private boolean spy=false;
 	private JFrame frame=new JFrame();
 	private JPanel login=new JPanel();
 	private JPanel gamepanel=new JPanel();
-	private JTextField hostname=new JTextField();
-	private JTextField username=new JTextField();
+	
+	private JTextField hostname=new JTextField(hostnamestring);
+	private JTextField username=new JTextField("samename");
+	
 	private JButton submituser=new JButton("Connect!");
 	private volatile boolean cansubmit=false;
 	private boolean cont=true;
@@ -76,6 +83,8 @@ public class Client {
 				}
 			}
 		});
+		
+		
 		login.setLayout(new GridBagLayout());
 		JLabel hnl=new JLabel("Host Name:");
 		GridBagConstraints constraints=new GridBagConstraints();
