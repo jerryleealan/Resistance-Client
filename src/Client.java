@@ -118,6 +118,7 @@ public class Client {
 	}
 	public void network(){
 		while(!cansubmit){}
+		frame.setTitle(user);
 		try{
 		BufferedOutputStream bos=new BufferedOutputStream(connection.getOutputStream());
 		osw=new OutputStreamWriter(bos, "US-ASCII");
