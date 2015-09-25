@@ -40,7 +40,7 @@ public class Client {
 	private volatile String input="";
 	
 	//gamepanel elements
-	private JLabel example=new JLabel("Game Started!");
+	private volatile JLabel example=new JLabel("Game Started!");
 	//
 	
 	public void gui(){
