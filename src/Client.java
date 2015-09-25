@@ -185,6 +185,7 @@ public class Client {
 					else
 						spytext+=otherspys.get(0)+", "+otherspys.get(1)+", and "+otherspys.get(2);
 				}
+				example.setText(spytext);
 				frame.remove(label);
 				frame.add(gamepanel);
 				frame.repaint();
