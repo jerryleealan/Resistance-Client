@@ -36,11 +36,11 @@ public class Client {
 	private volatile Socket connection;
 	private volatile int port=1999;
 	private String user="";
-	private JLabel label=new JLabel("Watiting");
+	private JLabel label=new JLabel("Waiting...");
 	private volatile String input="";
 	
 	//gamepanel elements
-	private JLabel example=new JLabel("Game Started");
+	private JLabel example=new JLabel("Game Started!");
 	//
 	
 	public void gui(){
