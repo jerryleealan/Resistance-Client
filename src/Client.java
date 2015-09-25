@@ -171,6 +171,7 @@ public class Client {
 			{
 				input=input.substring(3);
 				otherspys=new ArrayList<String>(Arrays.asList(input.split(" ")));
+				otherspys.remove(0);
 				input="";
 				spy=true;
 				frame.remove(label);
