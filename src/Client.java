@@ -61,7 +61,7 @@ public class Client {
 						host=hostname.getText();
 						InetAddress address =InetAddress.getByName(host);
 						connection=new Socket(address,port);
-						System.out.println("socket Created, waiting to submit username");
+						System.out.println("Socket created, waiting to submit username.");
 						username.setEditable(false);
 						frame.remove(login);
 						frame.add(label);
@@ -152,7 +152,7 @@ public class Client {
 		while(cont)
 		{
 			while(input.equals("")){};
-			System.out.println("ServerInstruction recieved");
+			System.out.println("ServerInstruction received");
 			if(input.equals("game"))
 			{
 				input="";
@@ -161,7 +161,7 @@ public class Client {
 			else if(input.equals("start"))
 			{
 				input="";
-				System.out.println("waiting to input something");
+				System.out.println("Waiting to input something");
 				frame.remove(label);
 				frame.add(gamepanel);
 				frame.repaint();
