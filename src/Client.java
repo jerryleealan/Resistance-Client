@@ -168,7 +168,6 @@ public class Client {
 			}
 			else if(input.substring(0,3).equals("spy"))
 			{
-				/*
 				input=input.substring(3);
 				otherspys=new ArrayList<String>(Arrays.asList(input.split(" ")));
 				input="";
@@ -185,10 +184,6 @@ public class Client {
 					else
 						spytext+=otherspys.get(0)+", "+otherspys.get(1)+", and "+otherspys.get(2);
 				}
-				*/
-				System.out.println("spy");
-				example.setText(input);
-				input="";
 				frame.remove(label);
 				frame.add(gamepanel);
 				frame.repaint();
