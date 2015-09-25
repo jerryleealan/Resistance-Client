@@ -180,7 +180,7 @@ public class Client {
 					spytext="You are a spy. There are 2 spys, and the other spy is "+otherspys.get(0);
 				else
 				{
-					spytext="You are a spy. There are "+otherspys.size()+" spys, and the other spys are ";
+					spytext="You are a spy. There are "+(otherspys.size()+1)+" spys, and the other spys are ";
 					if(otherspys.size()==2)
 						spytext+=otherspys.get(0)+" and "+otherspys.get(1);
 					else
