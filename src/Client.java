@@ -21,6 +21,8 @@ public class Client {
 	private ArrayList<String>otherspys=new ArrayList<String>();
 	private boolean spy=false;
 	private boolean missionleader=false;
+	private ArrayList<String>allusers=new ArrayList<String>();
+	
 	private JFrame frame=new JFrame();
 	private JPanel login=new JPanel();
 	private JPanel gamepanel=new JPanel();
