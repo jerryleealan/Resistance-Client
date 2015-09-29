@@ -195,6 +195,11 @@ public class Client {
 				frame.repaint();
 				frame.revalidate();
 			}
+			else if(input.equals("lead"))
+			{
+				input="";
+				missionleader=true;
+			}
 		}
 		connection.close();
 		System.out.println("Reached exit point");
