@@ -16,8 +16,8 @@ public class Client {
 		network();
 	}
 	
-	//private String hostnamestring="84F9622";
-	private String hostnamestring="55F9622";
+	private String hostnamestring="84F9622";
+	//private String hostnamestring="55F9622";
 	
 	private ArrayList<String>otherspys=new ArrayList<String>();
 	private boolean spy=false;
