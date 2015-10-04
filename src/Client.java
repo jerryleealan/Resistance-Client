@@ -1,9 +1,7 @@
 import java.net.*;
 import java.io.*;
 import java.util.*;
-
 import javax.swing.*;
-
 import java.awt.*;
 import java.awt.event.*;
 public class Client {
@@ -37,7 +35,7 @@ public class Client {
 	private volatile int port=1999;
 	private String user="";
 	private JLabel label=new JLabel("Watiting");
-	private volatile String input="";
+	private volatile Queue<String> input=new LinkedList<String>();
 	
 	//gamepanel elements
 	private JLabel example=new JLabel("Game Started");
@@ -49,6 +47,15 @@ public class Client {
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setBackground(Color.WHITE);
+		frame.addWindowListener(new WindowAdapter(){
+			public void windowClosing(WindowEvent e){
+				int confirm=JOptionPane.showOptionDialog(null,"Are you sure you want to exit?","Exit Confirmation", JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null,null,null);
+				if(confirm==0)
+				{
+					
+				}
+			}
+		});
 		username.setBackground(Color.WHITE);
 		submituser.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0)
@@ -111,9 +118,11 @@ public class Client {
 		constraints.weightx=1;
 		login.add(submituser,constraints);
 		frame.add(login);
+		
 		//
 		gamepanel.add(example);
 		//
+		
 		frame.setVisible(true);
 	}
 	public void network(){
@@ -137,7 +146,7 @@ public class Client {
 						int c=0;
 						while((c=isr.read())!=13)
 							instr.append((char) c);
-						input=instr.toString();
+						input.offer(instr.toString());
 					}
 				}
 				catch (IOException e)
@@ -150,27 +159,27 @@ public class Client {
 		t.start();
 		while(cont)
 		{
-			while(input.equals("")){};
+			while(input.isEmpty()){};
 			System.out.println("ServerInstruction recieved");
-			if(input.equals("game"))
+			if(input.peek().equals("game"))
 			{
-				input="";
+				input.poll();
 				cont=false;
 			}
-			else if(input.equals("start"))
+			else if(input.peek().equals("start"))
 			{
-				input="";
+				input.poll();
 				System.out.println("waiting to input something");
 				frame.remove(label);
 				frame.add(gamepanel);
 				frame.repaint();
 				frame.revalidate();
 			}
-			else if(input.substring(0,3).equals("spy"))
+			else if(input.peek().substring(0,3).equals("spy"))
 			{
-				input=input.substring(4);
-				otherspys=new ArrayList<String>(Arrays.asList(input.split(" ")));
-				input="";
+				String temp=input.poll().substring(4);
+				otherspys=new ArrayList<String>(Arrays.asList(temp.split(" ")));
+				input.remove(0);
 				spy=true;
 				frame.remove(label);
 				String spytext="";
@@ -199,6 +208,5 @@ public class Client {
 			System.out.println("Exception: "+ g);
 			System.exit(0);
 		}
-		
 	}
 }
