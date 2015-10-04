@@ -4,6 +4,8 @@ import java.util.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+
+//test again
 public class Client {
 	public static void main(String[]args)
 	{
@@ -15,9 +17,13 @@ public class Client {
 	}
 	
 	private String hostnamestring="84F9622";
+	//private String hostnamestring="55F9622";
 	
 	private ArrayList<String>otherspys=new ArrayList<String>();
 	private boolean spy=false;
+	private boolean missionleader=false;
+	private ArrayList<String>allusers=new ArrayList<String>();
+	
 	private JFrame frame=new JFrame();
 	private JPanel login=new JPanel();
 	private JPanel gamepanel=new JPanel();
@@ -34,11 +40,16 @@ public class Client {
 	private volatile Socket connection;
 	private volatile int port=1999;
 	private String user="";
+<<<<<<< HEAD
 	private JLabel label=new JLabel("Watiting");
 	private volatile Queue<String> input=new LinkedList<String>();
+=======
+	private JLabel label=new JLabel("Waiting...");
+	private volatile String input="";
+>>>>>>> origin/master
 	
 	//gamepanel elements
-	private JLabel example=new JLabel("Game Started");
+	private volatile JLabel example=new JLabel("Game Started!");
 	//
 	
 	public void gui(){
@@ -68,7 +79,7 @@ public class Client {
 						host=hostname.getText();
 						InetAddress address =InetAddress.getByName(host);
 						connection=new Socket(address,port);
-						System.out.println("socket Created, waiting to submit username");
+						System.out.println("Socket created, waiting to submit username.");
 						username.setEditable(false);
 						frame.remove(login);
 						frame.add(label);
@@ -127,6 +138,7 @@ public class Client {
 	}
 	public void network(){
 		while(!cansubmit){}
+		frame.setTitle(user);
 		try{
 		BufferedOutputStream bos=new BufferedOutputStream(connection.getOutputStream());
 		osw=new OutputStreamWriter(bos, "US-ASCII");
@@ -159,17 +171,28 @@ public class Client {
 		t.start();
 		while(cont)
 		{
+<<<<<<< HEAD
 			while(input.isEmpty()){};
 			System.out.println("ServerInstruction recieved");
 			if(input.peek().equals("game"))
+=======
+			while(input.equals("")){};
+			System.out.println("ServerInstruction received");
+			if(input.equals("game"))
+>>>>>>> origin/master
 			{
 				input.poll();
 				cont=false;
 			}
 			else if(input.peek().equals("start"))
 			{
+<<<<<<< HEAD
 				input.poll();
 				System.out.println("waiting to input something");
+=======
+				input="";
+				System.out.println("Waiting to input something");
+>>>>>>> origin/master
 				frame.remove(label);
 				frame.add(gamepanel);
 				frame.repaint();
@@ -177,26 +200,39 @@ public class Client {
 			}
 			else if(input.peek().substring(0,3).equals("spy"))
 			{
+<<<<<<< HEAD
 				String temp=input.poll().substring(4);
 				otherspys=new ArrayList<String>(Arrays.asList(temp.split(" ")));
 				input.remove(0);
+=======
+				input=input.substring(3);
+				otherspys=new ArrayList<String>(Arrays.asList(input.split(" ")));
+				otherspys.remove(0);
+				input="";
+>>>>>>> origin/master
 				spy=true;
 				frame.remove(label);
 				String spytext="";
 				if(otherspys.size()==1)
-					spytext="You are a spy. There are 2 spys, and the other spy is "+otherspys.get(0);
+					spytext="You are a spy. There are 2 spies, and the other spy is "+otherspys.get(0);
 				else
 				{
-					spytext="You are a spy. There are "+otherspys.size()+" spys, and the other spys are ";
+					spytext="You are a spy. There are "+(otherspys.size()+1)+" spies, and the other spies are ";
 					if(otherspys.size()==2)
 						spytext+=otherspys.get(0)+" and "+otherspys.get(1);
 					else
 						spytext+=otherspys.get(0)+", "+otherspys.get(1)+", and "+otherspys.get(2);
 				}
 				example.setText(spytext);
+				frame.remove(label);
 				frame.add(gamepanel);
 				frame.repaint();
 				frame.revalidate();
+			}
+			else if(input.equals("lead"))
+			{
+				input="";
+				missionleader=true;
 			}
 		}
 		connection.close();
