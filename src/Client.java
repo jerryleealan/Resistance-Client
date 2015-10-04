@@ -40,13 +40,9 @@ public class Client {
 	private volatile Socket connection;
 	private volatile int port=1999;
 	private String user="";
-<<<<<<< HEAD
 	private JLabel label=new JLabel("Watiting");
 	private volatile Queue<String> input=new LinkedList<String>();
-=======
-	private JLabel label=new JLabel("Waiting...");
-	private volatile String input="";
->>>>>>> origin/master
+
 	
 	//gamepanel elements
 	private volatile JLabel example=new JLabel("Game Started!");
@@ -171,28 +167,17 @@ public class Client {
 		t.start();
 		while(cont)
 		{
-<<<<<<< HEAD
 			while(input.isEmpty()){};
 			System.out.println("ServerInstruction recieved");
 			if(input.peek().equals("game"))
-=======
-			while(input.equals("")){};
-			System.out.println("ServerInstruction received");
-			if(input.equals("game"))
->>>>>>> origin/master
 			{
 				input.poll();
 				cont=false;
 			}
 			else if(input.peek().equals("start"))
 			{
-<<<<<<< HEAD
 				input.poll();
 				System.out.println("waiting to input something");
-=======
-				input="";
-				System.out.println("Waiting to input something");
->>>>>>> origin/master
 				frame.remove(label);
 				frame.add(gamepanel);
 				frame.repaint();
@@ -200,16 +185,9 @@ public class Client {
 			}
 			else if(input.peek().substring(0,3).equals("spy"))
 			{
-<<<<<<< HEAD
 				String temp=input.poll().substring(4);
 				otherspys=new ArrayList<String>(Arrays.asList(temp.split(" ")));
 				input.remove(0);
-=======
-				input=input.substring(3);
-				otherspys=new ArrayList<String>(Arrays.asList(input.split(" ")));
-				otherspys.remove(0);
-				input="";
->>>>>>> origin/master
 				spy=true;
 				frame.remove(label);
 				String spytext="";
@@ -229,9 +207,9 @@ public class Client {
 				frame.repaint();
 				frame.revalidate();
 			}
-			else if(input.equals("lead"))
+			else if(input.peek().equals("lead"))
 			{
-				input="";
+				input.poll();
 				missionleader=true;
 			}
 		}
